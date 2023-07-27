@@ -1,32 +1,31 @@
 #include "main.h"
+int prime_checker(int n, int i);
 /**
- * is_prime_number - this function verify if number is prime
-(* a blank line
- *@n: the number
-* Description: this function verify if a number is primer?
-(* section header: the header of this function is holberton.h)*
-* Return: return 1 or 0
-*/
+ * is_prime_number - executes prime_checker
+ * @n: input to check
+ * Return: Always 0 (Success)
+ */
 int is_prime_number(int n)
 {
-	return (real_is_prime(n, 2));
-}
-/**
- * real_is_prime - this is the real function
-(* a blank line
-*@n: the number to verify.
-*@i: the number to divide.
-* Description: this verify if a number is prime?
-(* section header: the header of this function is holberton.h)*
-* Return: return 1 or 0;
-*/
-int real_is_prime(int n, int i)
-{
-
-	if ((n % i == 0 && i <= n / 2) || n <= 1)
+	if (n <= 1)
 		return (0);
-	else if (n % i != 0 && i <= n / 2)
-		return (real_is_prime(n, i + 1));
-	else
+	else if (prime_checker(n, n / 2) > 0)
 		return (1);
+	return (0);
+}
+
+/**
+ * prime_checker - checks for prime
+ * @n: input to check
+ * @i: n / 2, then passes to i - 1, checks if greater than 0
+ * Return: prime check
+ */
+int prime_checker(int n, int i)
+{
+	if (i == 1)
+		return (1);
+	if (n % i == 0)
+		return (0);
+	else
+		return (prime_checker(n, i - 1));
 }
